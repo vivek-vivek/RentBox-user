@@ -1,0 +1,85 @@
+// import 'dart:async';
+// import 'dart:developer';
+
+// import 'package:flutter/material.dart';
+// import 'package:geolocator/geolocator.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:provider/provider.dart';
+// import 'package:rent_ro/controller/location/location_provider.dart';
+// import 'package:rent_ro/view/widgets/common_app_bar.dart';
+
+// class MapScreen extends StatefulWidget {
+//   const MapScreen({Key? key, required this.index}) : super(key: key);
+//   final int index;
+//   @override
+//   State<MapScreen> createState() => MapScreenState();
+// }
+
+// class MapScreenState extends State<MapScreen> {
+//   final Completer<GoogleMapController> _controller =
+//       Completer<GoogleMapController>();
+
+//   // static const CameraPosition currentLocationPlex = CameraPosition(
+//   //   target: LatLng(37.42796133580664, -122.085749655962),
+//   //   zoom: 14.4746,
+//   // );
+
+//   // on below line we have specified camera position
+//   static const CameraPosition currentLocation = CameraPosition(
+//     target: LatLng(10.850516, 76.271080),
+//     zoom: 14.4746,
+//   );
+
+//   final List<Marker> _markers = <Marker>[
+//     const Marker(
+//         markerId: MarkerId('1'),
+//         position: LatLng(20.42796133580664, 75.885749655962),
+//         infoWindow: InfoWindow(
+//           title: 'My Position',
+//         )),
+//   ];
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final location = Provider.of<LocationProvider>(context);
+
+    final Marker location2 = Marker(
+        markerId: const MarkerId("location2"),
+        infoWindow: InfoWindow(title: "${location.pickupName[1]}"),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+        rotation: BitmapDescriptor.hueAzure,
+        position: LatLng(location.coords[1].lat, location.coords[1].lng)
+    final Marker location1 = Marker(
+        markerId: const MarkerId("location1"),
+        infoWindow: InfoWindow(title: "${location.pickupName[0]}"),
+        icon: BitmapDescriptor.defaultMarker,
+        position: LatLng(location.coords[0].lat, location.coords[0].lng));
+
+//     final rsize = MediaQuery.of(context).size;
+//     return Scaffold(
+//       appBar: PreferredSize(
+//         preferredSize: Size(rsize.width, rsize.width),
+//         child: CommonAppBar(
+//           resHeight: rsize.width,
+//           context: context,
+//           title: "Location",
+//         ),
+//       ),
+//       body: GoogleMap(
+//         onTap: (argument) => log(argument.toString()),
+//         compassEnabled: true,
+//         markers: {location1, location2},
+//         mapType: MapType.satellite,
+//         initialCameraPosition: currentLocation,
+//         myLocationButtonEnabled: true,
+//         mapToolbarEnabled: true,
+//         trafficEnabled: true,
+//         zoomControlsEnabled: false,
+//         myLocationEnabled: true,
+//         onMapCreated: (GoogleMapController controller) {
+//           _controller.complete(controller);
+//         },
+//       ),
+//     );
+//   }
+// }

@@ -1,0 +1,14 @@
+              ~Stripe Payment In Flutter~
+Stripe payment gateway integration with a flutter app
+----------------------------------------------------------
+
+
+Strip Payment :
+Stripe is a payment gateway used to make payments on the web.
+Stripe has heaps of valuable highlights, for example, repeating installments,
+escrow records, and ongoing charge card number approval utilizing Luhn’s 
+algorithm. With the presentation of SCA rules in the UK, Stripe additionally
+gives SCA agreeable 
+APIs and Payment Intents, so it makes your work exceptionally straightforward. 
+Stripe Collect chargeable tokens from clients’ Card Input and Apple and Google 
+pay.
