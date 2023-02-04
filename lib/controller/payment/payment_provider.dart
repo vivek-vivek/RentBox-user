@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-import 'package:rent_ro/controller/payment/payment_services.dart';
+import 'package:rent_ro/controller/payment/rasor_pay.dart';
 import 'package:rent_ro/controller/search/search_provider.dart';
 
 class PaymentProvider with ChangeNotifier {
+  /*--------------------Order Data Handloing-----------------------------*/
+
+  /*---------------------------------------------------------------------*/
+
+  /*---------------------------RASOR PAY--------------------------------*/
+
   Future openRazorpay({index, required context}) async {
     Razorpay razorpay = Razorpay();
     var options = {
@@ -24,15 +30,15 @@ class PaymentProvider with ChangeNotifier {
     };
     razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,
         (PaymentFailureResponse response) {
-      PaymentServices().handlePaymentErrorResponse(response, context);
+      RasorPay().handlePaymentErrorResponse(response, context);
     });
     razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
         (PaymentSuccessResponse response) {
-      PaymentServices().handlePaymentSuccessResponse(response, context, index);
+      RasorPay().handlePaymentSuccessResponse(response, context, index);
     });
     razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET,
         (ExternalWalletResponse response) {
-      PaymentServices().handleExternalWalletSelected(response, context);
+      RasorPay().handleExternalWalletSelected(response, context);
     });
     razorpay.open(options);
   }
