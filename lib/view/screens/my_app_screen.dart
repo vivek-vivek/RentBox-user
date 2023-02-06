@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rent_ro/controller/Trip%20Detiles/trip_provider.dart';
 import 'package:rent_ro/utiles/colors.dart';
+import 'package:rent_ro/view/screens/Trip%20Screen/trip_tabbar_screen.dart';
 import 'package:rent_ro/view/screens/favorits/favorites_screen.dart';
 import 'package:rent_ro/view/screens/home_screen.dart';
 import 'package:rent_ro/view/screens/notification_screen.dart';
@@ -18,8 +21,8 @@ class MyAppScreenState extends State<MyAppScreen> {
   List<Widget> screens = [
     const HomeScreen(),
     const FavoritesScreen(),
+    const TripTabbarScreen(),
     const NotificationScreen(),
-    const ProfileScreen(),
     const ProfileScreen()
   ];
 

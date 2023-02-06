@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+// import 'package:rent_ro/controller/Trip%20Detiles/trip_provider.dart'
 import 'package:rent_ro/controller/map_user/map_user_provider.dart';
 import 'package:rent_ro/controller/search/search_provider.dart';
 import 'package:rent_ro/utiles/colors.dart';
@@ -13,6 +16,10 @@ class OrderDetailesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("message");
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+
+    // });
     final rSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: CommonColors.kBlack,
@@ -162,30 +169,6 @@ class OrderDetailesScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: rSize.width * 0.04),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: rSize.width * 0.02),
-                            child: Container(
-                              height: rSize.width * 0.125,
-                              decoration: BoxDecoration(
-                                color: CommonColors.red,
-                                borderRadius:
-                                    BorderRadius.circular(rSize.width * 0.03),
-                              ),
-                              child: Center(
-                                child: TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    "Continue",
-                                    style: GoogleFonts.truculenta(
-                                      color: CommonColors.kWhite,
-                                      fontSize: rSize.width * 0.08,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),

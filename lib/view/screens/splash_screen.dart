@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rent_ro/utiles/colors.dart';
 import 'package:rent_ro/view/assets/names.dart';
+import 'package:rent_ro/view/screens/login_screen.dart';
 import 'package:rent_ro/view/screens/my_app_screen.dart';
 
 // ignore: must_be_immutable
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   bool isLoggedIn;
 
   SplashScreen({
@@ -17,13 +18,8 @@ class SplashScreen extends StatefulWidget {
   });
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
   Widget build(BuildContext context) {
-    log(widget.isLoggedIn.toString());
+    log(isLoggedIn.toString());
     final rsize = MediaQuery.of(context).size;
     return AnimatedSplashScreen(
       duration: 3000,
@@ -48,8 +44,8 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
       ),
-      // nextScreen: isLoggedIn == true ? const MyAppScreen() : LoginScreen(),
-      nextScreen: const MyAppScreen(),
+      nextScreen: isLoggedIn == true ? const MyAppScreen() : LoginScreen(),
+      // nextScreen: const MyAppScreen(),
       splashTransition: SplashTransition.fadeTransition,
     );
   }

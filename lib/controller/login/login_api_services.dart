@@ -14,23 +14,31 @@ class LoginApiServices {
   Future loginApiServices({mobile, password, context}) async {
     try {
       log("$mobile  :  $password ");
-      log("nokkate User endo nn.....!");
+
       Response response = await Dio()
           .post(ApiUrls.baseUrl + ApiUrls.auth + ApiUrls.loginMobile, data: {
         "mobile": mobile,
         "password": password,
       });
+
       //.timeout(const Duration(seconds: 120))
-      log(response.statusCode.toString());
-      // LOGIN successfully coplete
+
+      // LOGIN coplete
       if (response.statusCode == 201) {
+        // SHARED PRIFERENCE OBJECT
         final prefs = await SharedPreferences.getInstance();
+
+        // ACCESS TOKEN
+        String ACCESS_TOKEN = response.data['accessToken'];
+        prefs.setString('ACCESS_TOKEN', ACCESS_TOKEN);
+
+        // LOGIN OR NOT
         prefs.setBool('isLoggedIn', true);
-        return Navigator.of(context).pushReplacement(MaterialPageRoute(
+
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => const MyAppScreen(),
         ));
-      }
-      if (response.statusCode == 400) {
+      } else if (response.statusCode == 400) {
         ScaffoldMessenger.of(context).showSnackBar(
             DialogeMessages().commonSnackBar(text: 'user note found!'));
         return;

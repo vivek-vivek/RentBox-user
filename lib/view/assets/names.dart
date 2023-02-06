@@ -6,4 +6,5 @@ class AssetsNames {
   static const runningCar = "lib/view/assets/images/runningcar.gif";
   static const tripCarImage = "lib/view/assets/images/carTrip.jpg";
   static const splashImage = "lib/view/assets/images/carsplash2.jpg";
+  static const host = "lib/view/assets/images/host.jpg";
 }

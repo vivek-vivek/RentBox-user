@@ -5,11 +5,11 @@ import 'package:rent_ro/controller/payment/rasor_pay.dart';
 import 'package:rent_ro/controller/search/search_provider.dart';
 
 class PaymentProvider with ChangeNotifier {
-  /*--------------------Order Data Handloing-----------------------------*/
+  /*------------------------Common Data----------------------------------*/
 
-  /*---------------------------------------------------------------------*/
+  /*---------------------------Order  sucess-----------------------------*/
 
-  /*---------------------------RASOR PAY--------------------------------*/
+  /*---------------------------RASOR PAY---------------------------------*/
 
   Future openRazorpay({index, required context}) async {
     Razorpay razorpay = Razorpay();

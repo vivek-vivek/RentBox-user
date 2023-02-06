@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:rent_ro/controller/payment/payment_services.dart';
 import 'package:rent_ro/view/screens/payment/summery_screen.dart';
 
 class RasorPay {
@@ -19,16 +20,15 @@ class RasorPay {
 
   void handlePaymentSuccessResponse(
       PaymentSuccessResponse response, context, index) {
+    log("payment done");
     /*
     * Payment Success Response contains three values:
     * 1. Order ID
     * 2. Payment ID
     * 3. Signature
     * */
-    log("handlePaymentSuccessResponse");
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) =>
-            PaymentSummery(index: index, response: response)));
+    PaymentServices().paymentDone(
+        context: context, index: index, responseresponse: response);
   }
 
   void handleExternalWalletSelected(ExternalWalletResponse response, context) {

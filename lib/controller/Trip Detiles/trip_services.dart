@@ -1,24 +1,41 @@
-import 'dart:async';
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:rent_ro/controller/exceptions/common_dio_erorr.dart';
 import 'package:rent_ro/controller/services/api_urls.dart';
-import 'package:rent_ro/model/location_model.dart';
+import 'package:rent_ro/model/order_model.dart';
 import 'package:rent_ro/view/widgets/dialoge_messages.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class LocationServices {
+class TripServices {
   final Dio dio = Dio();
-  Future<List<LocationModel>> getLocations(context) async {
-    log("1");
-    Response response = await dio.get(ApiUrls.baseUrl + ApiUrls.setup);
+
+  Future<List<OrderModel>> getResponse(context) async {
+    // SHARED PRIFERENCE OBJECT
+    final prefs = await SharedPreferences.getInstance();
+
+    // ACCESS TOKEN
+    final dynamic ACCESS_TOKEN = prefs.getString('ACCESS_TOKEN');
+
+    if (ACCESS_TOKEN.isEmpty && ACCESS_TOKEN == null) {
+      log("ACCESS TOKEN IS 'EMPTY'");
+    } else {
+      log("ACCESS TOKEN IS 'NOT' EMPTY");
+      log(ACCESS_TOKEN);
+    }
+    dio.options.headers["Authorization"] = "Bearer $ACCESS_TOKEN";
+
+    Response response = await dio.get(ApiUrls.baseUrl + ApiUrls.bookings);
 
     try {
       if (response.statusCode == 201) {
-        List<LocationModel> locatiomModel = [];
-        LocationModel mapJson = LocationModel.fromJson(response.data);
-        locatiomModel.add(mapJson);
-        return locatiomModel;
+        List<OrderModel> orderModel = [];
+        OrderModel mapJson = OrderModel.fromJson(response.data);
+        orderModel.add(mapJson);
+        return orderModel;
       }
     } catch (error) {
       commonException(context: context, error: error);

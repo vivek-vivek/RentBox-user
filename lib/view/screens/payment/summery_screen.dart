@@ -6,6 +6,7 @@ import 'package:rent_ro/controller/location/location_provider.dart';
 import 'package:rent_ro/controller/search/search_provider.dart';
 import 'package:rent_ro/utiles/colors.dart';
 import 'package:rent_ro/view/screens/home_screen.dart';
+import 'package:rent_ro/view/screens/my_app_screen.dart';
 import 'package:rent_ro/view/widgets/common_app_bar.dart';
 
 class PaymentSummery extends StatelessWidget {
@@ -22,10 +23,32 @@ class PaymentSummery extends StatelessWidget {
       backgroundColor: CommonColors.kBlack,
       appBar: PreferredSize(
         preferredSize: Size(rSize.width, rSize.width),
-        child: CommonAppBar(
-          resHeight: rSize.width,
-          context: context,
-          title: 'Payment Summery',
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.only(
+                left: rSize.width * 0.04,
+                right: rSize.width * 0.04,
+                top: rSize.width * 0.06),
+            child: Container(
+              decoration: BoxDecoration(
+                color: CommonColors.kWhite,
+                borderRadius: BorderRadius.circular(rSize.width * 0.03),
+              ),
+              height: rSize.width * 0.1,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "    Payment Summery",
+                    style: GoogleFonts.truculenta(
+                        color: CommonColors.green,
+                        fontSize: rSize.width * 0.05),
+                    textAlign: TextAlign.start,
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
       body: Column(
@@ -264,7 +287,7 @@ class PaymentSummery extends StatelessWidget {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const HomeScreen()),
+                                              const MyAppScreen()),
                                     );
                                   },
                                   child: Text(

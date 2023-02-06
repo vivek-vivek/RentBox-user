@@ -1,15 +1,11 @@
 import 'dart:developer';
-import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rent_ro/controller/exceptions/internet_conection.dart';
 import 'package:rent_ro/controller/location/location_provider.dart';
-import 'package:rent_ro/controller/services/api_urls.dart';
 import 'package:rent_ro/controller/services/search_services.dart';
 import 'package:rent_ro/model/search_model.dart';
-import 'package:rent_ro/model/single_car_model.dart';
 import 'package:rent_ro/view/screens/search/result_screen.dart';
 
 class Searchprovider with ChangeNotifier {

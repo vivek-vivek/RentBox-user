@@ -1,11 +1,11 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:rent_ro/controller/product/product_provider.dart';
 import 'package:rent_ro/controller/map_user/map_user_provider.dart';
-import 'package:rent_ro/controller/product/product_provider.dart';
 import 'package:rent_ro/utiles/colors.dart';
 
 class MapScreen extends StatefulWidget {
@@ -47,12 +47,13 @@ class MapScreenState extends State<MapScreen> {
       markersList.add(Marker(
           onTap: () => mapUser.setCtrlValue(
               text: product.pointNames[i],
+              id: product.carId,
+              obj: product.pickupPoints[i].id,
               lat: product.lat[i],
               lng: product.lng[i]),
-          markerId: const MarkerId("location2"),
+          markerId: MarkerId("$i"),
           infoWindow: InfoWindow(title: "${product.pointNames[i]}"),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-          rotation: BitmapDescriptor.hueRed,
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
           position: LatLng(product.lat[i], product.lng[i])));
     }
 
@@ -132,7 +133,7 @@ class MapScreenState extends State<MapScreen> {
           initialCameraPosition: _kGoogle,
           zoomControlsEnabled: false,
           markers: Set<Marker>.of(markers),
-          mapType: MapType.normal,
+          mapType: MapType.hybrid,
           myLocationEnabled: true,
           myLocationButtonEnabled: true,
           compassEnabled: true,
@@ -143,34 +144,6 @@ class MapScreenState extends State<MapScreen> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          getUserCurrentLocation().then((value) async {
-            // marker added for current users location
-            setState(() {
-              markersList.add(Marker(
-                markerId: const MarkerId("2"),
-                icon: BitmapDescriptor.defaultMarkerWithHue(
-                    BitmapDescriptor.hueBlue),
-                position: LatLng(value.latitude, value.longitude),
-              ));
-            });
-
-            // specified current users location
-            CameraPosition cameraPosition = CameraPosition(
-              target: LatLng(value.latitude, value.longitude),
-              zoom: 14,
-            );
-
-            final GoogleMapController controller = await controllers.future;
-            controller
-                .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-            setState(() {});
-          });
-        },
-        child: const Icon(Icons.gps_fixed),
-      ),
-      // on pressing floating action button the camera will take to user current product
     );
   }
 }

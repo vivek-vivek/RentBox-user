@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rent_ro/controller/Navigation/bottom_navigation_provider.dart';
+import 'package:rent_ro/controller/Trip%20Detiles/trip_provider.dart';
 import 'package:rent_ro/controller/location/location_provider.dart';
 import 'package:rent_ro/controller/map_user/map_user_provider.dart';
 import 'package:rent_ro/controller/payment/payment_provider.dart';
@@ -44,12 +45,11 @@ class MyApp extends StatelessWidget {
             create: (_) => MapUserProvider()),
         ChangeNotifierProvider<ProductProvider>(
             create: (_) => ProductProvider()),
+        ChangeNotifierProvider<TripProvider>(create: (_) => TripProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: ThemeData(primarySwatch: Colors.blue),
         home: SplashScreen(isLoggedIn: isLoggedIn),
         // home: MapScreen(),
       ),

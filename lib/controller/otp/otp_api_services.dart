@@ -20,25 +20,25 @@ class OtpApiServices {
     required context,
   }) async {
     try {
-      //sending data to a server in the JSON format
+      // POST - DATA FOR OTP
       var json = jsonEncode({'mobile': mobile, 'otp': otp});
       var response = await Dio().post(
           ApiUrls.baseUrl + ApiUrls.auth + ApiUrls.otpVerify,
           data: json,
           options: Options(contentType: "application/json"));
 
-      // If the request is successful,so get the access token from the response
-      String accessToken = response.data['accessToken'];
-
       if (response.statusCode == 201) {
-        // Get the shared preferences object
+        // SHARED PRIFERENCE OBJECT
         final prefs = await SharedPreferences.getInstance();
 
-        // Store the access token
+        // ACCESS TOKEN
+        String accessToken = response.data['accessToken'];
         prefs.setString('access_token', accessToken);
+
+        // LOGIN OR NOT
         prefs.setBool('isLoggedIn', true);
 
-        // to logout
+        //  LOG OUT
         //final prefs = await SharedPreferences.getInstance();
         // prefs.remove("isLoggedIn");
         Navigator.of(context).pushReplacement(

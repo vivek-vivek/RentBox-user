@@ -227,7 +227,9 @@ class HomeScreen extends StatelessWidget {
                 top: resHeight * 0.15,
                 right: resHeight * 0.04,
                 left: resHeight * 0.04),
-            child: GestureDetector(
+            child: InkWell(
+              splashColor: const Color.fromARGB(255, 71, 138, 101),
+              splashFactory: InkRipple.splashFactory,
               onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => SearchScreen(),
               )),

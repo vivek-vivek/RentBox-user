@@ -345,6 +345,11 @@ class ProductScreen extends StatelessWidget {
                       builder: (context, product, child) {
                     return TextButton(
                       onPressed: () {
+                        Provider.of<ProductProvider>(context, listen: false)
+                            .setPrice(
+                                priceCome: Provider.of<Searchprovider>(context,
+                                        listen: false)
+                                    .price[index]);
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => PaymentScreen(
@@ -428,25 +433,28 @@ class HeadingTexts extends StatelessWidget {
 }
 
 class SmallTexts extends StatelessWidget {
-  const SmallTexts({
-    super.key,
-    required this.title,
-    required this.rsize,
-    required this.color,
-  });
+  SmallTexts(
+      {super.key,
+      required this.title,
+      required this.rsize,
+      required this.color,
+      this.fontW,
+      this.fontSize = 0.05});
 
   final String title;
   final Size rsize;
   final Color color;
+  double fontSize;
+  bool? fontW = false;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       title,
       style: GoogleFonts.truculenta(
-        color: color,
-        fontSize: rsize.width * 0.05,
-      ),
+          color: color,
+          fontSize: rsize.width * fontSize,
+          fontWeight: fontW == true ? FontWeight.bold : FontWeight.normal),
     );
   }
 }
