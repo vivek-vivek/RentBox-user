@@ -20,7 +20,7 @@ RentBox is a cutting-edge car rental app designed to provide users with a seamle
 
 
 
-## Features
+## Vendor Side
 Vendor Side of the app is available on https://github.com/vivek-vivek/RENTBOX-VENDOR
 
 
